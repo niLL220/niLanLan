@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给最爱的小倪</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            color: #e3c7c7;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ffc0cb; /* 玫瑰金色背景 */
+            z-index: -2;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(10px);
+        }
+        h1 {
+            color: #ffb6c1;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #e0bfb8;
+            margin-bottom: 20px;
+        }
+        .photo-container {
+            width: 100%;
+            max-width: 426px;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+        .countdown {
+            font-size: 1.5rem;
+            color: #d8bfd8;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff7f50;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff4a3d;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 182, 193, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            color: #fff;
+        }
+        .modal p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        .modal .love-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4757;
+        }
+        .modal .de-text {
+            font-size: 1rem;
+            color: #eba7b1;
+        }
+        .modal .days-text {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+        .modal .close-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff6f61;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .modal .close-btn:hover {
+            background-color: #ff4a3d;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .countdown {
+                font-size: 1.2rem;
+            }
+            .button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+            .modal .love-text {
+                font-size: 2.5rem;
+            }
+            .modal .de-text {
+                font-size: 0.9rem;
+            }
+            .modal .days-text {
+                font-size: 1rem;
+            }
+            .photo-container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="sp.mp4" type="video/mp4">
+        您的浏览器不支持视频标签。
+    </video>
+    <h1>亲爱的，我想对你说...</h1>
+    <p>无论我们相隔多远，我心永远和你在一起❤️</p>
+    <div class="photo-container"><img src="999.jpg" alt="我们的照片"></div>
+    <div class="countdown" id="countdown"></div>
+    <a href="heart.html" class="button">请点击这里</a>
+    <script>
+        const startDate = new Date("2025-01-30T22:54:00");
+        function updateCountdown() {
+            const now = new Date();
+            const diffMs = now - startDate;
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffRemainderMs = diffMs % (1000 * 60 * 60 * 24);
+            const diffHours = Math.floor(diffRemainderMs / (1000 * 60 * 60));
+            const diffHoursRemainderMs = diffRemainderMs % (1000 * 60 * 60);
+            const diffMinutes = Math.floor(diffHoursRemainderMs / (1000 * 60));
+            const diffSeconds = Math.floor(diffHoursRemainderMs % (1000 * 60) / 1000);
+
+            document.getElementById("countdown").innerHTML = `定下约定的：<br>第 ${diffDays}天 ${diffHours}小时 ${diffMinutes}分钟 ${diffSeconds}秒`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
